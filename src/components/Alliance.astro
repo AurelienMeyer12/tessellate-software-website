@@ -1,0 +1,30 @@
+---
+import { allianceData } from '../data/alliance';
+---
+
+<section id="alliance" class="block block--cream alliance">
+  <div class="u-center alliance__wrap">
+    <header class="alliance__head">
+      <h2 class="alliance__title">{allianceData.title}</h2>
+      <p class="alliance__sub">{allianceData.subtitle}</p>
+    </header>
+
+    <div class="alliance__grid" role="list">
+      {allianceData.cards.map((card) => (
+        <article class="alliance__card" role="listitem">
+          <h3>{card.title}</h3>
+          <p set:html={card.description} />
+        </article>
+      ))}
+    </div>
+
+    <div class="alliance__logos" aria-label="Representative client logos">
+      {allianceData.logos.map((logo) => (
+        <img class="logo--color" src={logo} alt="" />
+      ))}
+    </div>
+
+    <p class="alliance__note">{allianceData.note}</p>
+  </div>
+</section>
+

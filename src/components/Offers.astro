@@ -1,0 +1,86 @@
+---
+import { offers } from '../data/offers';
+
+// Icon SVG components - professional, minimalist style
+const getIconSvg = (iconType: string) => {
+  const icons: Record<string, string> = {
+    technical: `<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Gear icon for engineering -->
+      <circle cx="28" cy="28" r="10" stroke="currentColor" stroke-width="2.5" fill="none"/>
+      <circle cx="28" cy="28" r="3" fill="currentColor"/>
+      <rect x="26" y="14" width="4" height="6" rx="1" fill="currentColor"/>
+      <rect x="26" y="36" width="4" height="6" rx="1" fill="currentColor"/>
+      <rect x="14" y="26" width="6" height="4" rx="1" fill="currentColor"/>
+      <rect x="36" y="26" width="6" height="4" rx="1" fill="currentColor"/>
+      <rect x="20.5" y="18.5" width="4" height="3" rx="0.5" transform="rotate(-45 20.5 18.5)" fill="currentColor"/>
+      <rect x="31.5" y="34.5" width="4" height="3" rx="0.5" transform="rotate(-45 31.5 34.5)" fill="currentColor"/>
+      <rect x="34.5" y="20.5" width="4" height="3" rx="0.5" transform="rotate(45 34.5 20.5)" fill="currentColor"/>
+      <rect x="18.5" y="31.5" width="4" height="3" rx="0.5" transform="rotate(45 18.5 31.5)" fill="currentColor"/>
+    </svg>`,
+    sales: `<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Line graph for growth -->
+      <path d="M12 40L18 32L24 36L30 24L36 28L44 20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <circle cx="12" cy="40" r="2.5" fill="currentColor"/>
+      <circle cx="18" cy="32" r="2.5" fill="currentColor"/>
+      <circle cx="24" cy="36" r="2.5" fill="currentColor"/>
+      <circle cx="30" cy="24" r="2.5" fill="currentColor"/>
+      <circle cx="36" cy="28" r="2.5" fill="currentColor"/>
+      <circle cx="44" cy="20" r="2.5" fill="currentColor"/>
+      <line x1="10" y1="42" x2="10" y2="48" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="10" y1="48" x2="46" y2="48" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>`,
+    advisory: `<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Multiple people for collaboration -->
+      <circle cx="20" cy="20" r="5" stroke="currentColor" stroke-width="2.5" fill="none"/>
+      <path d="M12 32C12 28.6863 14.6863 26 18 26H22C25.3137 26 28 28.6863 28 32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="36" cy="20" r="5" stroke="currentColor" stroke-width="2.5" fill="none"/>
+      <path d="M28 32C28 28.6863 30.6863 26 34 26H38C41.3137 26 44 28.6863 44 32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="28" cy="18" r="4" stroke="currentColor" stroke-width="2.5" fill="none"/>
+      <path d="M20 30C20 27.7909 21.7909 26 24 26H32C34.2091 26 36 27.7909 36 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>`,
+    transaction: `<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Circular arrows for flexibility -->
+      <path d="M20 28C20 23.5817 23.5817 20 28 20C32.4183 20 36 23.5817 36 28C36 32.4183 32.4183 36 28 36" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M24 24L20 28L24 32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <path d="M32 32C32 36.4183 28.4183 40 24 40C19.5817 40 16 36.4183 16 32C16 27.5817 19.5817 24 24 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M32 32L36 28L32 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>`,
+    partnerships: `<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Chain link for network -->
+      <path d="M18 24C18 20.6863 20.6863 18 24 18H28C31.3137 18 34 20.6863 34 24V28C34 31.3137 31.3137 34 28 34H24C20.6863 34 18 31.3137 18 28V24Z" stroke="currentColor" stroke-width="2.5" fill="none"/>
+      <path d="M22 32C22 28.6863 24.6863 26 28 26H32C35.3137 26 38 28.6863 38 32V36C38 39.3137 35.3137 42 32 42H28C24.6863 42 22 39.3137 22 36V32Z" stroke="currentColor" stroke-width="2.5" fill="none"/>
+      <line x1="28" y1="24" x2="28" y2="28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="28" y1="32" x2="28" y2="36" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>`,
+    integrity: `<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Shield for trust and protection -->
+      <path d="M28 12L18 16V26C18 32.6274 22.3726 38 28 40C33.6274 38 38 32.6274 38 26V16L28 12Z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <path d="M24 26L27 29L32 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="28" y1="12" x2="28" y2="8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="28" cy="8" r="2" fill="currentColor"/>
+    </svg>`
+  };
+  return icons[iconType] || icons.technical;
+};
+---
+
+<section id="offers" class="block block--cream">
+  <div class="u-center offers__wrap">
+    <header class="offers__head">
+      <h2 class="offers__title">What We Bring</h2>
+      <p class="offers__sub">
+        We provide the capital, expertise, and operational support to help vertical market software companies reach their full potential.
+      </p>
+    </header>
+
+    <div class="offers__grid" role="list">
+      {offers.map((offer, index) => (
+        <article class="offer" role="listitem">
+          <div class="offer__icon offer__icon--{offer.icon}" style={`--animation-delay: ${index * 0.1}s`} set:html={getIconSvg(offer.icon)}></div>
+          <h3 class="offer__title">{offer.title}</h3>
+          <p class="offer__description">{offer.description}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

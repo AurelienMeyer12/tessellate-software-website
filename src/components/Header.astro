@@ -1,0 +1,57 @@
+---
+---
+
+<header class="site-header">
+  <a href="#hero" class="site-header__logo">
+    <img class="site-header__logo-img" src="/images/logos/tessellate-logo.png" alt="Tessellate Software" />
+    <span class="site-header__name">Tessellate Software</span>
+  </a>
+  <nav aria-label="Primary">
+    <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span class="nav__toggle-icon"></span>
+      <span class="nav__toggle-icon"></span>
+      <span class="nav__toggle-icon"></span>
+    </button>
+    <ul class="nav__list" id="nav-list">
+      <li><a class="nav__link" href="#offers">What We Bring</a></li>
+      <li><a class="nav__link" href="#alliance">Technical Bench</a></li>
+      <li><a class="nav__link" href="#team">Team</a></li>
+      <li><a class="nav__link" href="#contact-block">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  (function() {
+    const toggle = document.getElementById('nav-toggle');
+    const navList = document.getElementById('nav-list');
+    
+    if (!toggle || !navList) return;
+    
+    toggle.addEventListener('click', () => {
+      const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', !isExpanded);
+      navList.classList.toggle('nav__list--open');
+      toggle.classList.toggle('nav__toggle--open');
+    });
+    
+    // Close menu when clicking a link
+    navList.querySelectorAll('.nav__link').forEach(link => {
+      link.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        navList.classList.remove('nav__list--open');
+        toggle.classList.remove('nav__toggle--open');
+      });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!toggle.contains(e.target) && !navList.contains(e.target)) {
+        toggle.setAttribute('aria-expanded', 'false');
+        navList.classList.remove('nav__list--open');
+        toggle.classList.remove('nav__toggle--open');
+      }
+    });
+  })();
+</script>
+

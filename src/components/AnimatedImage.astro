@@ -1,0 +1,113 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  animationType?: 'pulse' | 'float' | 'rotate' | 'fade' | 'slide';
+  duration?: string;
+  className?: string;
+}
+
+const { 
+  src, 
+  alt, 
+  animationType = 'pulse',
+  duration = '3s',
+  className = ''
+} = Astro.props;
+---
+
+<img 
+  src={src} 
+  alt={alt} 
+  class={`animated-image animated-image--${animationType} ${className}`}
+  style={`--animation-duration: ${duration};`}
+/>
+
+<style>
+  .animated-image {
+    display: block;
+    animation-iteration-count: infinite;
+    animation-duration: var(--animation-duration, 3s);
+    animation-timing-function: ease-in-out;
+  }
+
+  /* Pulse animation - scales in and out */
+  .animated-image--pulse {
+    animation-name: pulse;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+  }
+
+  /* Float animation - moves up and down */
+  .animated-image--float {
+    animation-name: float;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Rotate animation - spins slowly */
+  .animated-image--rotate {
+    animation-name: rotate;
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Fade animation - fades in and out */
+  .animated-image--fade {
+    animation-name: fade;
+  }
+
+  @keyframes fade {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.6;
+    }
+  }
+
+  /* Slide animation - moves left and right */
+  .animated-image--slide {
+    animation-name: slide;
+  }
+
+  @keyframes slide {
+    0%, 100% {
+      transform: translateX(0px);
+    }
+    50% {
+      transform: translateX(10px);
+    }
+  }
+</style>
+
+
+
+
+
+
+
+

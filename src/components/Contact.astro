@@ -1,0 +1,82 @@
+---
+---
+
+<section id="contact-block" class="block block--cream">
+  <div class="u-center contact__wrap">
+    <p class="contact__kicker">Get in touch</p>
+    <h2 class="contact__headline">Let's build something enduring.</h2>
+    <p class="contact__text">
+      We are always looking for great businesses and talented people. Reach out to us at
+      <button type="button" class="contact__email" id="contact-email" data-email="felix@tessellatesoftware.com">
+        <span class="contact__email-text">felix@tessellatesoftware.com</span>
+        <span class="contact__icon-wrapper">
+          <span class="contact__icon contact__icon--clipboard contact__icon--visible" id="contact-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.5 2.5H4C3.44772 2.5 3 2.94772 3 3.5V13.5C3 14.0523 3.44772 14.5 4 14.5H12C12.5523 14.5 13 14.0523 13 13.5V3.5C13 2.94772 12.5523 2.5 12 2.5H10.5M5.5 2.5C5.5 1.94772 5.94772 1.5 6.5 1.5H9.5C10.0523 1.5 10.5 1.94772 10.5 2.5M5.5 2.5C5.5 2.5 5.5 3.5 6.5 3.5H9.5C10.5 3.5 10.5 2.5 10.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="contact__icon contact__icon--check" id="contact-icon-check" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13.5 4.5L6 12L2.5 8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </span>
+      </button>
+      <span class="contact__copy-feedback" id="copy-feedback" aria-live="polite"></span>
+    </p>
+  </div>
+</section>
+
+<script>
+  (function() {
+    const emailButton = document.getElementById('contact-email');
+    const feedback = document.getElementById('copy-feedback');
+    const clipboardIcon = document.getElementById('contact-icon');
+    const checkIcon = document.getElementById('contact-icon-check');
+    const email = emailButton?.getAttribute('data-email') || '';
+    
+    if (!emailButton || !feedback || !clipboardIcon || !checkIcon) return;
+    
+    emailButton.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(email);
+        // Show check icon, hide clipboard icon
+        clipboardIcon.classList.remove('contact__icon--visible');
+        checkIcon.classList.add('contact__icon--visible');
+        emailButton.classList.add('contact__email--copied');
+        
+        setTimeout(() => {
+          checkIcon.classList.remove('contact__icon--visible');
+          clipboardIcon.classList.add('contact__icon--visible');
+          emailButton.classList.remove('contact__email--copied');
+        }, 2000);
+      } catch (err) {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = email;
+        textArea.style.position = 'fixed';
+        textArea.style.opacity = '0';
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+          document.execCommand('copy');
+          // Show check icon, hide clipboard icon
+          clipboardIcon.classList.remove('contact__icon--visible');
+          checkIcon.classList.add('contact__icon--visible');
+          emailButton.classList.add('contact__email--copied');
+          
+          setTimeout(() => {
+            checkIcon.classList.remove('contact__icon--visible');
+            clipboardIcon.classList.add('contact__icon--visible');
+            emailButton.classList.remove('contact__email--copied');
+          }, 2000);
+        } catch (fallbackErr) {
+          feedback.textContent = 'Unable to copy. Please copy manually.';
+          feedback.classList.add('contact__copy-feedback--visible');
+        }
+        document.body.removeChild(textArea);
+      }
+    });
+  })();
+</script>
+

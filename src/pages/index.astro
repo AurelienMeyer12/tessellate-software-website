@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Offers from '../components/Offers.astro';
+import Alliance from '../components/Alliance.astro';
+import Team from '../components/Team.astro';
+import TeamModal from '../components/TeamModal.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Tessellate Software">
+  <Header />
+  <main>
+    <Hero />
+    <Offers />
+    <Alliance />
+    <Team />
+    <Contact />
+  </main>
+  <Footer />
+  <TeamModal />
+  <script>
+    import '../scripts/modal';
+  </script>
+</BaseLayout>
+

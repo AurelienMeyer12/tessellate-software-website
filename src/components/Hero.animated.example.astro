@@ -1,0 +1,36 @@
+---
+// EXAMPLE: How to use animated images in Hero component
+// To use this, replace the current Hero.astro with this version
+import AnimatedImage from './AnimatedImage.astro';
+---
+
+<section id="hero" class="block hero">
+  <div class="hero__pattern"></div>
+  <div class="u-center">
+    <div class="hero__inner">
+      <!-- Animated Logo (left) - using CSS animation -->
+      <AnimatedImage 
+        class="hero__logo"
+        src="/images/logos/tessellate-logo.png" 
+        alt="Tessellate Software logo"
+        animationType="float"
+        duration="4s"
+      />
+
+      <!-- Text (right) -->
+      <div class="hero__copy">
+        <h1 id="hero-title" class="hero__title">Tessellate Software</h1>
+        <p class="hero__sub">An enduring home for ultra-niche, mission-critical VMS businesses.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+

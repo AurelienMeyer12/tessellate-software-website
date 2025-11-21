@@ -1,0 +1,25 @@
+---
+import { teamMembers } from '../data/team';
+import TeamMember from './TeamMember.astro';
+---
+
+<section id="team" class="block team-strip" aria-labelledby="team-title">
+  <div class="u-center team__wrap">
+    <header class="team__head">
+      <h2 id="team-title" class="statement__title">Our Team</h2>
+    </header>
+
+    <div class="team__grid" role="list">
+      {teamMembers.map((member) => (
+        <TeamMember
+          name={member.name}
+          role={member.role}
+          image={member.image}
+          linkedin={member.linkedin}
+          bio={member.bio}
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
