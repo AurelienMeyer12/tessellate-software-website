@@ -35,8 +35,7 @@ export const allianceData: AllianceData = {
   logos: [
     "/images/logos/google-logo.webp",
     "/images/logos/slack-logo.png",
-    "/images/logos/youtube-logo.svg",
-    "/images/logos/octave-logo.png"
+    "/images/logos/youtube-logo.svg"
   ],
   note: "Bit Complete's team of 35+ seasoned software developers have worked with both Fortune 500 companies and high growth start-ups to build products that matter."
 };
