@@ -19,9 +19,15 @@ import { allianceData } from '../data/alliance';
     </div>
 
     <div class="alliance__logos" aria-label="Representative client logos">
-      {allianceData.logos.map((logo) => (
-        <img class="logo--color" src={logo} alt="" />
-      ))}
+      {allianceData.logos.map((logo) => {
+        // Extract company name from logo filename
+        const filename = logo.split('/').pop() || '';
+        const companyName = filename
+          .replace(/-logo\.(png|svg|webp|jpg|jpeg)$/i, '')
+          .replace(/[_-]/g, ' ')
+          .replace(/\b\w/g, (char: string) => char.toUpperCase());
+        return <img class="logo--color" src={logo} alt={`${companyName} logo`} />;
+      })}
     </div>
 
     <p class="alliance__note">{allianceData.note}</p>
