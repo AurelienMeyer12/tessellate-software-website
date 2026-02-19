@@ -56,11 +56,13 @@ const getIconSvg = (iconType: string) => {
     </header>
 
     <div class="offers__grid" role="list">
-      {offers.map((offer, index) => (
+      {offers.map((offer) => (
         <article class="offer" role="listitem">
-          <div class="offer__icon offer__icon--{offer.icon}" style={`--animation-delay: ${index * 0.1}s`} set:html={getIconSvg(offer.icon)}></div>
-          <h3 class="offer__title">{offer.title}</h3>
-          <p class="offer__description">{offer.description}</p>
+          <div class="offer__icon" set:html={getIconSvg(offer.icon)}></div>
+          <div class="offer__body">
+            <h3 class="offer__title">{offer.title}</h3>
+            <p class="offer__description">{offer.description}</p>
+          </div>
         </article>
       ))}
     </div>
