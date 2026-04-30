@@ -17,19 +17,19 @@ export const allianceData: AllianceData = {
   cards: [
     {
       title: "About the Partnership",
-      description: "Tessellate has partnered with Bit Complete, a leading technical development agency, to help portfolio companies accelerate growth through world-class engineering and operational excellence."
+      description: "Tessellate has partnered with Bit Complete to help portfolio companies accelerate growth through world-class engineering and operational excellence — without losing the long-term stewardship that brought you here."
     },
     {
       title: "Product Development",
-      description: "Modernize your tech stack and integrate AI-driven features tailored to your vertical: intelligent workflows, automation, and data analytics that drive customer value."
+      description: "Modernize your stack and integrate AI-driven features tailored to your vertical: intelligent workflows, automation, and analytics that drive customer value and reduce churn."
     },
     {
       title: "Operating Best Practices",
-      description: "Jumpstart value creation across top- and bottom-line levers: pricing strategy, sales and go-to-market, and customer success frameworks."
+      description: "Jumpstart value creation across both top- and bottom-line levers: pricing strategy, sales and go-to-market motion, and customer success frameworks."
     },
     {
-      title: "Technical Expertise",
-      description: "Bit Complete's team of 35+ seasoned software developers have worked with Fortune 500 companies and high growth start-ups to build products that matter."
+      title: "Technical Bench",
+      description: "35+ seasoned software developers who've built products with Fortune 500s and high-growth startups alike — available as the situation requires."
     }
   ],
   logos: [
@@ -38,6 +38,5 @@ export const allianceData: AllianceData = {
     "/images/logos/youtube-logo.svg",
     "/images/logos/league_logo.png"
   ],
-  note: "Bit Complete's team of 35+ seasoned software developers have worked with both Fortune 500 companies and high growth start-ups to build products that matter."
+  note: ""
 };
-

@@ -10,12 +10,19 @@ interface Props {
 const { name, role, image, linkedin, bio } = Astro.props;
 ---
 
-<article class="member" role="listitem">
-  <a class="member__avatar-link" href={linkedin} target="_blank" rel="noopener" aria-label={`${name}'s LinkedIn profile`}>
-    <img class="member__avatar" src={image} alt={`${name} headshot`} />
-  </a>
-  <h3 class="member__name">{name}</h3>
-  <p class="member__role">{role}</p>
-  <p class="member__bio">{bio}</p>
+<article class="member" role="listitem"
+  data-name={name}
+  data-role={role}
+  data-link={linkedin}
+  data-img={image}
+  data-bio={bio}>
+  <img class="member__photo" src={image} alt={`Portrait of ${name}`} />
+  <div class="member__head">
+    <h3 class="member__name">{name}</h3>
+    <p class="member__role">{role}</p>
+  </div>
+  <div class="member__actions">
+    <button class="js-open-bio" type="button">Read bio</button>
+    <a href={linkedin} target="_blank" rel="noopener">LinkedIn</a>
+  </div>
 </article>
-

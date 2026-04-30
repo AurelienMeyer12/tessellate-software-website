@@ -3,13 +3,17 @@ import { teamMembers } from '../data/team';
 import TeamMember from './TeamMember.astro';
 ---
 
-<section id="team" class="block team-strip" aria-labelledby="team-title">
-  <div class="u-center team__wrap">
-    <header class="team__head">
-      <h2 id="team-title" class="statement__title">Our Team</h2>
+<section class="section section--alt" id="team" aria-labelledby="team-title">
+  <div class="wrap">
+    <header class="sec-head">
+      <div class="sec-head__eyebrow"><span class="sec-head__num">03</span> The Team</div>
+      <div>
+        <h2 id="team-title" class="sec-head__title">Operators, investors, builders.</h2>
+        <p class="sec-head__lede">A small partnership of people who have built, sold, scaled, and stewarded software businesses — and who show up for founders when it counts.</p>
+      </div>
     </header>
 
-    <div class="team__grid" role="list">
+    <div class="team-grid" role="list">
       {teamMembers.map((member) => (
         <TeamMember
           name={member.name}
@@ -22,4 +26,3 @@ import TeamMember from './TeamMember.astro';
     </div>
   </div>
 </section>
-

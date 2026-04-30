@@ -1,68 +1,25 @@
 ---
 import { offers } from '../data/offers';
 
-// Lucide-based icons — clean, consistent stroke style (viewBox 0 0 24 24, stroke 1.5)
-const getIconSvg = (iconType: string) => {
-  const icons: Record<string, string> = {
-    technical: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="4" y="4" width="16" height="16" rx="2"/>
-      <rect x="9" y="9" width="6" height="6" rx="1"/>
-      <path d="M15 2v2"/>
-      <path d="M15 20v2"/>
-      <path d="M2 15h2"/>
-      <path d="M2 9h2"/>
-      <path d="M20 15h2"/>
-      <path d="M20 9h2"/>
-      <path d="M9 2v2"/>
-      <path d="M9 20v2"/>
-    </svg>`,
-    sales: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
-      <polyline points="16 7 22 7 22 13"/>
-    </svg>`,
-    advisory: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-      <circle cx="9" cy="7" r="4"/>
-      <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-    </svg>`,
-    transaction: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M8 3L4 7l4 4"/>
-      <path d="M4 7h16"/>
-      <path d="m16 21 4-4-4-4"/>
-      <path d="M20 17H4"/>
-    </svg>`,
-    partnerships: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="10"/>
-      <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
-      <path d="M2 12h20"/>
-    </svg>`,
-    integrity: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
-      <path d="m9 12 2 2 4-4"/>
-    </svg>`
-  };
-  return icons[iconType] || icons.technical;
-};
+const romanNumerals = ['i', 'ii', 'iii', 'iv', 'v', 'vi'];
 ---
 
-<section id="offers" class="block block--cream">
-  <div class="u-center offers__wrap">
-    <header class="offers__head">
-      <h2 class="offers__title">What We Bring</h2>
-      <p class="offers__sub">
-        We provide the capital, expertise, and operational support to help vertical market software companies reach their full potential.
-      </p>
+<section class="section section--alt" id="offers" aria-labelledby="offers-title">
+  <div class="wrap">
+    <header class="sec-head">
+      <div class="sec-head__eyebrow"><span class="sec-head__num">01</span> What we bring</div>
+      <div>
+        <h2 id="offers-title" class="sec-head__title">Operator–investors focused on durable growth.</h2>
+        <p class="sec-head__lede">A small team with deep benches in engineering, go-to-market, and capital strategy — at the ready when founders need them.</p>
+      </div>
     </header>
 
-    <div class="offers__grid" role="list">
-      {offers.map((offer) => (
+    <div class="offers-grid" role="list">
+      {offers.map((offer, index) => (
         <article class="offer" role="listitem">
-          <div class="offer__icon" set:html={getIconSvg(offer.icon)}></div>
-          <div class="offer__body">
-            <h3 class="offer__title">{offer.title}</h3>
-            <p class="offer__description">{offer.description}</p>
-          </div>
+          <span class="offer__num">{romanNumerals[index]}</span>
+          <h3 class="offer__title">{offer.title}</h3>
+          <p class="offer__body">{offer.description}</p>
         </article>
       ))}
     </div>
