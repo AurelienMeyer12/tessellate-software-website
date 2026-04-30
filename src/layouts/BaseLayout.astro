@@ -3,9 +3,18 @@ import '../styles/global.css';
 
 interface Props {
   title?: string;
+  description?: string;
+  ogImage?: string;
 }
 
-const { title = "Tessellate Software" } = Astro.props;
+const { 
+  title = "Tessellate Software", 
+  description = "An enduring home for ultra-niche, mission-critical VMS businesses. Providing capital, expertise, and operational support to help vertical market software companies reach their full potential.",
+  ogImage = "/images/logos/tessellate-logo.png"
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://tessellatesoftware.com');
+const fullTitle = title === "Tessellate Software" ? title : `${title} | Tessellate Software`;
 ---
 
 <!doctype html>
@@ -13,15 +22,34 @@ const { title = "Tessellate Software" } = Astro.props;
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{title}</title>
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={new URL(ogImage, Astro.site || 'https://tessellatesoftware.com')} />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content={canonicalURL} />
+  <meta property="twitter:title" content={fullTitle} />
+  <meta property="twitter:description" content={description} />
+  <meta property="twitter:image" content={new URL(ogImage, Astro.site || 'https://tessellatesoftware.com')} />
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/favicon.png" />
 
-  <!-- Taviraj (Light 300 + Bold 700 for headings) -->
-  <link href="https://fonts.googleapis.com/css2?family=Taviraj:ital,wght@0,300;0,700;1,300;1,700&display=swap" rel="stylesheet">
+  <!-- Fraunces (display) + Inter Tight (UI) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300;9..144,0,400;9..144,0,500;9..144,0,600;9..144,0,700;9..144,1,400;9..144,1,500&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <slot />
 </body>
 </html>

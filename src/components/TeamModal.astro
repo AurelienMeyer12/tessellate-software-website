@@ -1,19 +1,23 @@
 ---
 ---
 
-<div class="modal" id="bio-modal" role="dialog" aria-labelledby="bio-title" aria-modal="true">
+<div class="modal" id="bio-modal" role="dialog" aria-modal="true" aria-labelledby="bio-title">
   <div class="modal__dialog">
-    <div class="modal__head">
+    <div class="modal__top">
       <div>
         <h3 id="bio-title" class="modal__title">Member name</h3>
         <p id="bio-role" class="modal__role">Role</p>
       </div>
-      <button class="modal__close" type="button" id="bio-close" aria-label="Close bio dialog">×</button>
+      <button class="modal__close" type="button" id="bio-close" aria-label="Close bio">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M6 18L18 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+      </button>
     </div>
     <div class="modal__body">
-      <img id="bio-img" class="modal__avatar" src="" alt="Profile photo" />
-      <p id="bio-desc">Bio text here.</p>
+      <img id="bio-img" class="modal__avatar" alt="" />
+      <p id="bio-desc" class="modal__bio">Bio text here.</p>
+    </div>
+    <div class="modal__bottom">
+      <a id="bio-link" href="#" target="_blank" rel="noopener">View on LinkedIn &rarr;</a>
     </div>
   </div>
 </div>
-

@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
 import Offers from '../components/Offers.astro';
 import Alliance from '../components/Alliance.astro';
 import Team from '../components/Team.astro';
@@ -10,10 +11,11 @@ import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<BaseLayout title="Tessellate Software">
+<BaseLayout title="Tessellate Software — An enduring home for VMS businesses" description="Tessellate Software is an enduring home for ultra-niche, mission-critical vertical market software businesses.">
   <Header />
-  <main>
+  <main id="main-content">
     <Hero />
+    <About />
     <Offers />
     <Alliance />
     <Team />
@@ -25,4 +27,3 @@ import Footer from '../components/Footer.astro';
     import '../scripts/modal';
   </script>
 </BaseLayout>
-

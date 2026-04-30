@@ -1,30 +1,41 @@
 ---
 import { allianceData } from '../data/alliance';
+
+const cardLabels = ['a.', 'b.', 'c.', 'd.'];
 ---
 
-<section id="alliance" class="block block--cream alliance">
-  <div class="u-center alliance__wrap">
-    <header class="alliance__head">
-      <h2 class="alliance__title">{allianceData.title}</h2>
-      <p class="alliance__sub">{allianceData.subtitle}</p>
+<section class="section" id="alliance" aria-labelledby="alliance-title">
+  <div class="wrap">
+    <header class="sec-head">
+      <div class="sec-head__eyebrow"><span class="sec-head__num">02</span> Strategic Alliance</div>
+      <div>
+        <h2 id="alliance-title" class="sec-head__title">Tessellate <em>&times;</em> Bit Complete.</h2>
+        <p class="sec-head__lede">Operating value for entrepreneurs in vertical market software — a partnership with a leading technical development agency that brings world-class engineering to every portfolio company.</p>
+      </div>
     </header>
 
-    <div class="alliance__grid" role="list">
-      {allianceData.cards.map((card) => (
-        <article class="alliance__card" role="listitem">
-          <h3>{card.title}</h3>
-          <p set:html={card.description} />
+    <div class="alliance-grid" role="list">
+      {allianceData.cards.map((card, index) => (
+        <article class="alliance-card" role="listitem">
+          <span class="alliance-card__num">{cardLabels[index]}</span>
+          <h3 class="alliance-card__title">{card.title}</h3>
+          <p class="alliance-card__body" set:html={card.description} />
         </article>
       ))}
     </div>
 
-    <div class="alliance__logos" aria-label="Representative client logos">
-      {allianceData.logos.map((logo) => (
-        <img class="logo--color" src={logo} alt="" />
-      ))}
+    <div class="alliance-logos" aria-label="Where the team has been">
+      <div class="alliance-logos__label">Where we've been</div>
+      <div class="alliance-logos__row">
+        {allianceData.logos.map((logo) => {
+          const filename = logo.split('/').pop() || '';
+          const companyName = filename
+            .replace(/-logo\.(png|svg|webp|jpg|jpeg)$/i, '')
+            .replace(/[_-]/g, ' ')
+            .replace(/\b\w/g, (char: string) => char.toUpperCase());
+          return <img src={logo} alt={companyName} />;
+        })}
+      </div>
     </div>
-
-    <p class="alliance__note">{allianceData.note}</p>
   </div>
 </section>
-

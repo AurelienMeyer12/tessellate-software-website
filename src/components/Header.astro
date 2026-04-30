@@ -1,52 +1,58 @@
 ---
 ---
 
-<header class="site-header">
-  <a href="#hero" class="site-header__logo">
-    <img class="site-header__logo-img" src="/images/logos/tessellate-logo.png" alt="Tessellate Software" />
-    <span class="site-header__name">Tessellate Software</span>
-  </a>
-  <nav aria-label="Primary">
-    <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-      <span class="nav__toggle-icon"></span>
-      <span class="nav__toggle-icon"></span>
-      <span class="nav__toggle-icon"></span>
-    </button>
-    <ul class="nav__list" id="nav-list">
-      <li><a class="nav__link" href="#offers">What We Bring</a></li>
-      <li><a class="nav__link" href="#alliance">Strategic Alliance</a></li>
-      <li><a class="nav__link" href="#team">Team</a></li>
-      <li><a class="nav__link" href="#contact-block">Contact</a></li>
-    </ul>
-  </nav>
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="#top" aria-label="Tessellate Software home">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M16 2 L28 9 L28 23 L16 30 L4 23 L4 9 Z" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M16 2 L16 16 M16 16 L28 9 M16 16 L4 9 M16 16 L28 23 M16 16 L4 23 M16 16 L16 30" stroke="currentColor" stroke-width="0.75" opacity="0.55"/>
+      </svg>
+      <span>Tessellate Software</span>
+    </a>
+    <nav aria-label="Primary">
+      <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="nav__toggle-icon"></span>
+        <span class="nav__toggle-icon"></span>
+        <span class="nav__toggle-icon"></span>
+      </button>
+      <ul class="nav__list" id="nav-list">
+        <li><a href="#about">About</a></li>
+        <li><a href="#offers">What we bring</a></li>
+        <li><a href="#alliance">Alliance</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a class="cta" href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
 <script>
   (function() {
     const toggle = document.getElementById('nav-toggle');
     const navList = document.getElementById('nav-list');
-    
+
     if (!toggle || !navList) return;
-    
+
     toggle.addEventListener('click', () => {
       const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
       toggle.setAttribute('aria-expanded', !isExpanded);
       navList.classList.toggle('nav__list--open');
       toggle.classList.toggle('nav__toggle--open');
     });
-    
+
     // Close menu when clicking a link
-    navList.querySelectorAll('.nav__link').forEach(link => {
+    navList.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         toggle.setAttribute('aria-expanded', 'false');
         navList.classList.remove('nav__list--open');
         toggle.classList.remove('nav__toggle--open');
       });
     });
-    
+
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-      if (!toggle.contains(e.target) && !navList.contains(e.target)) {
+      if (!toggle.contains(e.target as Node) && !navList.contains(e.target as Node)) {
         toggle.setAttribute('aria-expanded', 'false');
         navList.classList.remove('nav__list--open');
         toggle.classList.remove('nav__toggle--open');
@@ -54,4 +60,3 @@
     });
   })();
 </script>
-
